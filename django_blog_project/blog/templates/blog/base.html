@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WSB Project - Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/blog.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway:400,800" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="loader">
+    <div class="navbar">
+      <a id="brand" href="{% url 'post_list' %}">WSB Project - Blog</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="https://github.com/Mateusz-Stachurzewski">Github</a>
+      <a href="{% url 'contact_form' %}">Contact</a>
+     {% if user.is_authenticated %}
+     <div class="dropdown content-hidden">
+        <button class="dropbtn">Posts
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+          <a class="link" href="{%url 'post_new' %}">New Post</a>
+          <a class="link" href="{% url 'post_draft_list'%}">Draft</a>
+        </div>
+      </div>
+      <a href="{% url 'gallery' %}">Gallery</a>
+      </div>
+      <div class="navbar">
+      <a class="user welcome">Welcome: {{user.username}}</a>
+      <a class="user" href="{% url 'logout' %}">Logout</a>
+     {% else %}
+     </div>
+     <div class="navbar">
+      <a class= "user user-icon" href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a>
+     {% endif %}
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="footer">
+        <div class="footer-left">
+        </div>
+        <div class="footer-center">
+            <p>© 2018 Mateusz Stachurzewski</p>
+        </div>
+        <div class="footer-right">
+            <p>Tychy, Poland</p>
+        </div>
+    </div>
+<script src="{% static 'js/blog.js'%}"></script>
+</body>
+</html>
+
+

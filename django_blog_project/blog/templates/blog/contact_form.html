@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="contact-form">
+    <h1>Contact me!</h1>
+     <form class="post-form" action="{% url 'email_sent' %}" method="POST">
+         {% csrf_token %}
+        <label>Name</label>
+        <input class="text-field text-name"  type="text" name="name">
+        <label>Email</label>
+        <input class="text-field text-email" type="text" name="email">
+        <div class="radio-gender">
+            <span><input class="gender" type="radio" name="gender" value="male"> Male</span>
+            <span><input class="gender" type="radio" name="gender" value="female"> Female</span>
+        </div>
+        <div class="confirm-checkbox">
+            <label>Send confirmation</label>
+            <input type="checkbox">
+        </div>
+        <label id="message">Message</label>
+        <textarea class="text-field text-message" rows="4" cols="50"></textarea>
+        <button class="save btn btn-default submit-form" type="submit"  disabled>Send</button>
+    </form>
+</div>
+{% endblock %}
